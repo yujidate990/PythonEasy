@@ -1,25 +1,21 @@
-users = [
-    {
-        "id": 1,
-        "name": "Taro",
-        "age": 20
-    },
-    {
-        "id": 2,
-        "name": "Hanako",
-        "age": 18
-    },
-    {
-        "id": 3,
-        "name": "Kubo",
-        "age": 25
-    }
-]
+from db import get_user
+from users import User
 
-def get_user(name):
-    for user in users:
-        if name == user["name"]:
-            return user
-    else:
-        return None
 
+if __name__ == "__main__":
+
+    while True:
+        name = input("ユーザー名を入力してください。: ")
+        
+        user_ = get_user(name)
+        if user_:
+            user = User(user_["id"], user_["name"], user_["age"])
+            break
+    
+    print(user.name + "でログインしました。")
+
+    tweet = input("ツイートしてください。: ")
+    
+    print("===ツイート内容===")
+    print(user.name + "さん:" + tweet)
+            
